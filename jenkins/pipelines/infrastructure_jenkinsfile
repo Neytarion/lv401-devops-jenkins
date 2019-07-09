@@ -11,6 +11,11 @@ pipeline {
                 build job: 'build_db'
             }
         }
+        stage('Creating teamcity node') {
+            steps {
+                build job: 'teamcity'
+            }
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
