@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    stages {
+        stage('Creating tomcat servers') {
+            steps {
+                gsutil -m cp -R  gs://db-instance ~/
+                cd db-instance/db-instance/ ; make
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
