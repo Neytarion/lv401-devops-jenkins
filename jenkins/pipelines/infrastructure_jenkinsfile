@@ -16,6 +16,11 @@ pipeline {
                 build job: 'teamcity'
             }
         }
+        stage('Creating terraform') {
+            steps {
+                build job: 'terraform'
+            }
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
