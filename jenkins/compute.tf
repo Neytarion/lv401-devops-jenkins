@@ -52,21 +52,21 @@ service_account {
  sudo unzip -o lv401-jenkins1.zip ;
  sudo cp jenkins7.zip /var/lib/jenkins ;
  sudo unzip -o /var/lib/jenkins/jenkins7.zip; 
-# sudo yum install -y ansible;
-# sudo yum install -y python-pip; 
-# sudo pip install google-auth requests;
-# sudo ansible-inventory -i inventory.gcp.yml --graph; 
-# ssh-keygen -t rsa -f /home/yanyshyn/.ssh/id_rsa -q -P "" ; 
-# sudo cp ~/.ssh/id_rsa ~/;
-# key=$(cat ~/.ssh/id_rsa.pub); echo variable "public_key" { default = '"'"$USER"':'"$key"'"'} >> variables.tf ;
- # Installing plugins now 
+ # ---------------- Installing files for teamcity
+cd /var/lib/jenkins/workspace/teamcity
+sudo gsutil cp -p gs://teamcity-tf/disk.tf gs://"teamcity-tf/Copy of disk.tf" .
+sudo gsutil cp -p gs://teamcity-tf/main.tf gs://"teamcity-tf/Copy of main.tf" .
+sudo gsutil cp gs://teamcity-tf/teamcity.tf gs://"teamcity-tf/Copy of teamcity.tf" .
+sudo gsutil cp -p gs://teamcity-tf/variables.tf gs://"teamcity-tf/Copy of variables.tf" .
+sudo gsutil cp -p gs://teamcity-tf/lv401-superproject-89963972f36b.json gs://"teamcity-tf/Copy of lv401-superproject-89963972f36b.json" .
+ # ---------------- Installing plugins now 
  sudo mkdir /home/jenkins;
  sudo wget -O /home/jenkins/jenkins-cli.jar http://localhost:8080/jnlpJars/jenkins-cli.jar;
  sudo java -jar /home/jenkins/jenkins-cli.jar -s http://127.0.0.1:8080/ install-plugin workflow-aggregator ;
  sudo java -jar /home/jenkins/jenkins-cli.jar -s http://127.0.0.1:8080/ install-plugin git-parameter;
  sudo systemctl restart jenkins;
  sleep 50;
- # Getting template from repo
+ # ---------------- Getting template from repo
  sudo git clone https://github.com/Neytarion/lv401-devops-jenkins /home/jenkins/lv_401/;
  sudo java -jar /home/jenkins/jenkins-cli.jar -s http://127.0.0.1:8080/ create-job teamcity < /home/jenkins/lv_401/templates/teamcity.xml;
  sudo java -jar /home/jenkins/jenkins-cli.jar -s http://127.0.0.1:8080/ create-job up_inst < /home/jenkins/lv_401/templates/up_inst.xml;
@@ -74,12 +74,12 @@ service_account {
  sudo java -jar /home/jenkins/jenkins-cli.jar -s http://127.0.0.1:8080/ create-job build_db < /home/jenkins/lv_401/templates/database.xml;
  #java -jar /home/jenkins/jenkins-cli.jar -s http://127.0.0.1:8080/ build tomcat;
  #sleep 20 #need to write script here ;
- # Installing ansible now
+ # ----------------- Installing ansible now
  sudo yum install -y ansible;
  sudo yum install -y python-pip;
  sudo pip install google-auth requests;
  sudo ansible-inventory -i inventory.gcp.yml --graph;
- sudo ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P "" ;
+ ssh-keygen -t rsa -f ~/.ssh/google_compute_engine -q -P "" ;
  #sudo cp ~/.ssh/id_rsa ~/;
  #sudo key=$(cat ~/.ssh/id_rsa.pub); sudo echo variable "public_key" { default = '"'"$USER"':'"$key"'"'} >> variables.tf ;
 SCRIPT
