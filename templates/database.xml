@@ -14,7 +14,7 @@
   <builders>
     <hudson.tasks.Shell>
       <command>gsutil -m cp -R  gs://db-instance ~/
-cd ~/; cd db-instance/db-instance/ ; make</command>
+cd ~/; cd db-instance/db-instance/db-instance ; make</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
