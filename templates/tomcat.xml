@@ -13,7 +13,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>gsutil cp gs://terratomcat/* .
+      <command>gsutil cp gs://terratomcat3/* .
 cd /var/lib/jenkins/workspace/tomcat 
 chmod 777 *
 /var/lib/jenkins/workspace/tomcat/terraform init
