@@ -28,17 +28,9 @@
 
     <hudson.tasks.Shell>
 
-      <command>gsutil cp gs://teamcity-tf/* .
+      <command>wget https://releases.hashicorp.com/terraform/0.12.2/terraform_0.12.2_linux_amd64.zip; 
 
-chmod 777 *
-
-cd /var/lib/jenkins/workspace/teamcity
-
-/var/lib/jenkins/workspace/teamcity/terraform init
-
-/var/lib/jenkins/workspace/teamcity/terraform apply -auto-approve
-
-/var/lib/jenkins/workspace/teamcity/terraform output &gt; hosts</command>
+ unzip terraform_0.12.2_linux_amd64.zip;</command>
 
     </hudson.tasks.Shell>
 
