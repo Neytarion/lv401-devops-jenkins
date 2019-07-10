@@ -13,8 +13,9 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>cd /var/lib/jenkins/workspace/teamcity
+      <command>gsutil cp gs://teamcity-tf/* .
 chmod 777 *
+cd /var/lib/jenkins/workspace/teamcity
 /var/lib/jenkins/workspace/teamcity/terraform init
 /var/lib/jenkins/workspace/teamcity/terraform apply -auto-approve
 /var/lib/jenkins/workspace/teamcity/terraform output &gt; hosts</command>
