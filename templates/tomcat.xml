@@ -18,7 +18,11 @@ cd /var/lib/jenkins/workspace/tomcat
 chmod 777 *
 /var/lib/jenkins/workspace/tomcat/terraform init
 /var/lib/jenkins/workspace/tomcat/terraform apply -auto-approve
-/var/lib/jenkins/workspace/tomcat/terraform output &gt; hosts</command>
+/var/lib/jenkins/workspace/tomcat/terraform output instance_ipv4 &gt; hosts
+key=$(cat hosts); echo &quot;tomcat ansible_host=$key&quot; &gt;&gt; /etc/ansible/hosts
+
+
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
