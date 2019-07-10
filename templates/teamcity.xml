@@ -14,10 +14,6 @@
   <builders>
     <hudson.tasks.Shell>
       <command>cd /var/lib/jenkins/workspace/teamcity
-gsutil cp -p gs://teamcity-tf/disk.tf gs://"teamcity-tf/Copy of disk.tf" .
-gsutil cp -p gs://teamcity-tf/main.tf gs://"teamcity-tf/Copy of main.tf" .
-gsutil cp gs://teamcity-tf/teamcity.tf gs://"teamcity-tf/Copy of teamcity.tf" .
-gsutil cp -p gs://teamcity-tf/variables.tf gs://"teamcity-tf/Copy of variables.tf" .
 chmod 777 *
 /var/lib/jenkins/workspace/teamcity/terraform init
 /var/lib/jenkins/workspace/teamcity/terraform apply -auto-approve
